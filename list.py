@@ -4,7 +4,7 @@ import random
 
 YES_ANSWERS = ('yes', 'y', 'yeah', 'yeap', 'ya')
 NO_ANSWERS = ('no', 'nope', 'n')
-ENEMIES_NAMES = ('Daryna Bereshnyk', 'Kate Voitushenko', 'Anastasia Khrush')
+ENEMIES_NAMES = ('Vasya Pupkin', 'Kate Dooglas', 'Anastasia Khrush')
 
 class Stalin:
 
@@ -12,6 +12,7 @@ class Stalin:
         self.death_chance = 0.5
         self.enemies = []
         self.setup_default_names()
+        self.body_chance = 0.5
         self.setup_names()
         self.animations = Animations()
 
@@ -23,14 +24,15 @@ class Stalin:
 
             self.enemies.append(new_enemy)
 
-            more_names = input('Do you want to add more name? ')
+            more_names = input('Do you want to add more name?: ')
             if more_names.lower() in NO_ANSWERS:
                 break
             elif more_names.lower() in YES_ANSWERS:
                 continue
             else:
-                print('We deleted last name. Try again!')
+                print('We deleted last person. Try again!')
                 self.enemies.pop()
+                print('\n')
 
     def repressions(self):
         while True:
@@ -44,10 +46,11 @@ class Stalin:
                     self.show_all_enemies()
                 else:
                     last_chance = input('Dietertir survived, but we need to do something with his life.' 
-                        'Try again (last_chance) or keep alive? (yes - try again , no - keep alive) ')
+                        'Try again (last_chance) or keep alive? (yes - try again , no - keep alive): ')
                     if last_chance.lower() in YES_ANSWERS:
                         if self.kill(enemy) == True:
                             print('CONGATULATIONS. Dietertir WAS KILLED')
+                            print('\n')
                             self.show_all_enemies()
                         else:
                             print('Ops, Dietertir was alive. Lets give for him one more chance for new life')
@@ -60,13 +63,13 @@ class Stalin:
                 self.show_all_enemies()
                 print('All available targets')
                 print('\n')
-                error_more = input('Do you want again? ')
-                if error_more.lower in YES_ANSWERS:
+                error_more = input('Do you want again?: ')
+                if error_more.lower() in YES_ANSWERS:
                     continue
                 else:
                     break
 
-            more = input('Do u want more? ')
+            more = input('Do u want more?: ')
             if more.lower() in YES_ANSWERS:
                 continue
             else:
@@ -94,13 +97,20 @@ class Stalin:
         survive_chance = random.random()
         if survive_chance > self.death_chance:
             self.remove_from_enemies(person)
-            print(f'{person} killed.')
+            self.type_of_death(person)
             print('\n')
             return True
         else:
             print(f'{person} was survived')
             print('\n')
             return False
+
+    def type_of_death(self, person):
+        type_chance = random.random()
+        if type_chance < self.body_chance:
+            print(f'{person} was shot in the head. Death happened instantly')
+        else:
+            print(f'{person} disertir died in agony')
 
     def remove_from_enemies(self, person):
         target_index = self.enemies.index(person)
