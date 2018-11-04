@@ -4,7 +4,7 @@ import random
 
 YES_ANSWERS = ('yes', 'y', 'yeah', 'yeap', 'ya')
 NO_ANSWERS = ('no', 'nope', 'n')
-ENEMIES_NAMES = ('Vasya Pupkin', 'Kate Dooglas', 'Anastasia Khrush')
+ENEMIES_NAMES = ('Daryna Bereshnyk', 'Kate Voitushenko', 'Anastasia Khrush')
 
 class Stalin:
 
@@ -95,7 +95,7 @@ class Stalin:
         print('For this you should be shot')
         self.animations.animated_dots()
         survive_chance = random.random()
-        if survive_chance > self.death_chance:
+        if self.death_chance > survive_chance:
             self.remove_from_enemies(person)
             self.type_of_death(person)
             print('\n')
