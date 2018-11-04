@@ -4,7 +4,7 @@ import random
 
 YES_ANSWERS = ('yes', 'y', 'yeah', 'yeap', 'ya')
 NO_ANSWERS = ('no', 'nope', 'n')
-ENEMIES_NAMES = ('Daryna Bereshnyk', 'Kate Voitushenko', 'Anastasia Khrush')
+ENEMIES_NAMES = ('Ivan Pupkin', 'Dron Voitushenko', 'Anastasia Khrush')
 
 class Stalin:
 
